@@ -68,12 +68,18 @@ class GameFragment : Fragment() {
             binding.wordText.text = newWord.toString()
         })
 
+        //Observer changes to 'word' using LiveData observer
+        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { hasFinished ->
+            if (hasFinished == true){
+                gameFinished()
+                viewModel.onGameFinishComplete()
+            }
+        })
+
 
         return binding.root
 
     }
-
-
 
     /**
      * Called when the game is finished
@@ -82,8 +88,6 @@ class GameFragment : Fragment() {
         val action = GameFragmentDirections.actionGameToScore(viewModel.score.value ?: 0)
         findNavController(this).navigate(action)
     }
-
-
 
 
 }
