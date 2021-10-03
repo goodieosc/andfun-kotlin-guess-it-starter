@@ -50,14 +50,17 @@ class GameFragment : Fragment() {
         Log.i("GameFragment","Called ViewModelProvider")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
+        //Pass the GameViewModel into the data binding:
+        binding.gameViewModel = viewModel
 
-        binding.correctButton.setOnClickListener {
-            viewModel.onCorrect()
-        }
-        binding.skipButton.setOnClickListener {
-            viewModel.onSkip()
-
-        }
+//        No longer needed given binding is direct between ViewModel and View
+//        binding.correctButton.setOnClickListener {
+//            viewModel.onCorrect()
+//        }
+//        binding.skipButton.setOnClickListener {
+//            viewModel.onSkip()
+//
+//        }
 
         //Observe changes to 'score' using LiveData observer
         viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
