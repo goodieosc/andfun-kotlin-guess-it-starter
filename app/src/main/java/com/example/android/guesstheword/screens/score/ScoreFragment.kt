@@ -60,9 +60,12 @@ class ScoreFragment : Fragment() {
             binding.scoreText.text = newScore.toString()
         })
 
+        //Pass the GameViewModel into the data binding:
+        binding.scoreViewModel = viewModel
+
 
         binding.scoreText.text = scoreFragmentArgs.score.toString()
-        binding.playAgainButton.setOnClickListener { viewModel.onPlayAgain() }
+        //binding.playAgainButton.setOnClickListener { viewModel.onPlayAgain() }
 
         // Navigates back to title when button is pressed
         viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
