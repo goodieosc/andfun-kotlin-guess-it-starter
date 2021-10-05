@@ -56,12 +56,15 @@ class ScoreFragment : Fragment() {
             .get(ScoreViewModel::class.java)
 
         // Add observer for score
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
+
+        //now done directly from XML view
+//        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+//            binding.scoreText.text = newScore.toString()
+//        })
 
         //Pass the GameViewModel into the data binding:
         binding.scoreViewModel = viewModel
+        binding.setLifecycleOwner(this)
 
 
         binding.scoreText.text = scoreFragmentArgs.score.toString()

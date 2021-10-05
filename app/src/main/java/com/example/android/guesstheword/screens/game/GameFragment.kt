@@ -52,6 +52,7 @@ class GameFragment : Fragment() {
 
         //Pass the GameViewModel into the data binding:
         binding.gameViewModel = viewModel
+        binding.setLifecycleOwner(this)
 
 //        No longer needed given binding is direct between ViewModel and View
 //        binding.correctButton.setOnClickListener {
@@ -63,14 +64,18 @@ class GameFragment : Fragment() {
 //        }
 
         //Observe changes to 'score' using LiveData observer
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
+
+        //Now done directly from XML view
+//        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+//            binding.scoreText.text = newScore.toString()
+//        })
 
         //Observe changes to 'word' using LiveData observer
-        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
-            binding.wordText.text = newWord.toString()
-        })
+
+        //Removed as now done in the XML fiew.
+//        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
+//            binding.wordText.text = newWord.toString()
+//        })
 
         //Observe changes to countdowntimer LiveData observer
         viewModel.time.observe(viewLifecycleOwner, Observer { timeRemaining ->
