@@ -5,6 +5,7 @@ import android.text.format.DateUtils
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import kotlin.time.milliseconds
 
@@ -38,9 +39,13 @@ class GameViewModel : ViewModel(){
         get() = _score
 
     // The current time
-    private var _time = MutableLiveData<String>() //Mutable list needs to be ued for LiveData. Mutable value only accessible within this class.
-    val time : LiveData<String>  //Value accessible from other classes.
+    private var _time = MutableLiveData<Long>() //Mutable list needs to be ued for LiveData. Mutable value only accessible within this class.
+    val time : LiveData<Long>  //Value accessible from other classes.
         get() = _time
+
+    val currentTimeString = Transformations.map(time) { currentTime ->
+        DateUtils.formatElapsedTime(currentTime)
+    }
 
     // The list of words - the front of the list is the next word to guess
     lateinit var wordList: MutableList<String>
@@ -59,7 +64,7 @@ class GameViewModel : ViewModel(){
             override fun onTick(millisUntilFinished: Long) {
                 // TODO implement what should happen each tick of the timer
                 //_time.value = (millisUntilFinished / 1000).toString()
-                _time.value = DateUtils.formatElapsedTime(millisUntilFinished /1000)
+                _time.value = (millisUntilFinished / ONE_SECOND)
             }
 
             override fun onFinish() {

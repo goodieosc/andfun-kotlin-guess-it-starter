@@ -78,10 +78,10 @@ class GameFragment : Fragment() {
 //        })
 
         //Observe changes to countdowntimer LiveData observer
-        viewModel.time.observe(viewLifecycleOwner, Observer { timeRemaining ->
-            //binding.timerText.text = "00: ${timeRemaining.toString()}"
-            binding.timerText.text = timeRemaining.toString()
-        })
+//        viewModel.time.observe(viewLifecycleOwner, Observer { timeRemaining ->
+//            //binding.timerText.text = "00: ${timeRemaining.toString()}"
+//            binding.timerText.text = timeRemaining.toString()
+//        })
 
         timer_text
 
