@@ -83,6 +83,7 @@ class GameFragment : Fragment() {
 //            binding.timerText.text = timeRemaining.toString()
 //        })
 
+
         timer_text
 
         //Observer changes to 'word' using LiveData observer
